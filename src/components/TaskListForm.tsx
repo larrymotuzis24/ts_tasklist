@@ -7,9 +7,18 @@ interface TaskListFormProps {
 export default function TaskListForm({ addTask }: TaskListFormProps): JSX.Element {
   const [task, setTask] = useState('');
   const [priority, setPriority] = useState('Low');
+  const [ error, setError ] = useState('');
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!task.trim()) {
+        setError("Task title is required."); // Set the error message
+        return; // Exit the function to prevent submission
+      }
+  
+      // Clear any previous error message
+      setError("");
+  
     let newTask = task;
     addTask(newTask, priority);
     setTask('');
@@ -20,13 +29,11 @@ export default function TaskListForm({ addTask }: TaskListFormProps): JSX.Elemen
       <h2 className="text-lg font-semibold mb-2">Create a New Task</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="taskTitle" className="block text-sm font-medium text-gray-700">
-            Task Title
-          </label>
+          {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
           <input
             id="taskTitle"
             type="text"
-            placeholder="Enter task title"
+            placeholder="Enter a task name"
             className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             value={task}
             onChange={(e) => setTask(e.target.value)}
