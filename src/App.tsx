@@ -8,8 +8,8 @@ import { v4 as getID } from 'uuid';
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (task: string, priority: string) => {
-    setTasks([...tasks, { id: getID(), taskName: task, priority }]);
+  const addTask = (taskName: string, priority: string, dueDate: string) => {
+    setTasks([...tasks, { id: getID(), taskName: taskName, priority, dueDate }]);
   };
 
   return (

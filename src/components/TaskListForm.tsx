@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 interface TaskListFormProps {
-  addTask: (task: string, priority: string) => void;
+  addTask: (taskName: string, priority: string, dueDate: string) => void;
 }
 
 export default function TaskListForm({ addTask }: TaskListFormProps): JSX.Element {
   const [task, setTask] = useState('');
   const [priority, setPriority] = useState('Low');
+  const [dueDate, setDueDate] = useState("");
   const [ error, setError ] = useState('');
 
   function handleSubmit(e: React.FormEvent) {
@@ -20,7 +21,7 @@ export default function TaskListForm({ addTask }: TaskListFormProps): JSX.Elemen
       setError("");
   
     let newTask = task;
-    addTask(newTask, priority);
+    addTask(newTask, priority, dueDate);
     setTask('');
   }
 
@@ -83,6 +84,18 @@ export default function TaskListForm({ addTask }: TaskListFormProps): JSX.Elemen
               High
             </label>
           </div>
+        </div>
+        <div>
+          <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">
+            Due Date
+          </label>
+          <input
+            id="dueDate"
+            type="date"
+            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+          />
         </div>
         <div>
           <button
