@@ -5,4 +5,5 @@ export default interface Task {
     taskName:string;
     priority:string;
     dueDate: string;
+    completed: boolean;
   };

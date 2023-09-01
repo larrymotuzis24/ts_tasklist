@@ -8,21 +8,27 @@ import { v4 as getID } from 'uuid';
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (taskName: string, priority: string, dueDate: string) => {
-    setTasks([...tasks, { id: getID(), taskName: taskName, priority, dueDate }]);
+  const addTask = (task: string, priority: string, dueDate: string) => {
+    setTasks([...tasks, { id: getID(), taskName: task, priority, dueDate, completed: false }]);
   };
+
+  const markTaskCompleted = (taskId: string) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updatedTasks);
+  };
+
+  const filteredTasks = tasks.filter((task) => !task.completed);
 
   return (
     <div className="App">
-      <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-semibold mb-4">Task List</h1>
-        <div className="flex flex-col lg:flex-row gap-4">
-          <div className="lg:w-1/2">
-            <TaskList tasks={tasks} />
-          </div>
-          <div className="lg:w-1/2">
-            <TaskListForm addTask={addTask} />
-          </div>
+      <div className="flex">
+        <div className="w-1/2 p-4">
+          <TaskList tasks={filteredTasks} markTaskCompleted={markTaskCompleted} />
+        </div>
+        <div className="w-1/2 p-4">
+          <TaskListForm addTask={addTask} />
         </div>
       </div>
     </div>
@@ -30,3 +36,4 @@ function App() {
 }
 
 export default App;
+
