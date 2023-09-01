@@ -14,8 +14,17 @@ function App() {
 
   return (
     <div className="App">
-      <TaskList tasks={tasks} />
-      <TaskListForm addTask={addTask} />
+      <div className="container mx-auto p-4">
+        <h1 className="text-3xl font-semibold mb-4">Task List</h1>
+        <div className="flex flex-col lg:flex-row gap-4">
+          <div className="lg:w-1/2">
+            <TaskList tasks={tasks} />
+          </div>
+          <div className="lg:w-1/2">
+            <TaskListForm addTask={addTask} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
