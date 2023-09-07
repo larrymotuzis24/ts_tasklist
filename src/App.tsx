@@ -23,7 +23,8 @@ function App() {
 
   return (
     <div className="App">
-      <div className="flex">
+      <h1 className='text-2xl text-center pt-8 pb-4'> Task Manager </h1>
+      <div className="flex container-with-border">
         <div className="w-1/2 p-4">
           <TaskList tasks={filteredTasks} markTaskCompleted={markTaskCompleted} />
         </div>

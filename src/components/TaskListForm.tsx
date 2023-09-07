@@ -23,7 +23,8 @@ export default function TaskListForm({ addTask }: TaskListFormProps): JSX.Elemen
     let newTask = task;
     addTask(newTask, priority, dueDate);
     setTask('');
-  }
+    setPriority('Low');
+  };
 
   return (
     <div className="max-w-xs mx-auto p-4 bg-white shadow-md rounded-lg">
@@ -35,12 +36,13 @@ export default function TaskListForm({ addTask }: TaskListFormProps): JSX.Elemen
             id="taskTitle"
             type="text"
             placeholder="Enter a task name"
-            className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="block w-full border-black-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             value={task}
             onChange={(e) => setTask(e.target.value)}
           />
+         
         </div>
-        <div className="space-x-4">
+        <div className="space-x-4 border-t-2 border-blue-500">
           <label className="block text-sm font-medium text-gray-700">Priority</label>
           <div className="flex items-center">
             <input
