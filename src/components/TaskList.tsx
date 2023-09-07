@@ -9,8 +9,8 @@ interface TaskListProps {
 
 export default function TaskList({ tasks, markTaskCompleted }: TaskListProps): JSX.Element {
   return (
-    <div>
-      <h1>Task List</h1>
+    <div className="pl-8">
+      <h1 className="text-xl underline text-center">Task List</h1>
       <div>
         <ul>
           {tasks.map((taskItem) => (
